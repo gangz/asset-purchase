@@ -1,10 +1,10 @@
-package com.github.gangz2009.demo.purchase;
+package gangz.purchase;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PurchaseApplicationTests {
+class PurchaseAppTests {
 
 	@Test
 	void contextLoads() {

@@ -1,13 +1,13 @@
-package com.github.gangz2009.demo.purchase;
+package gangz.purchase;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PurchaseApplication {
+public class PurchaseApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PurchaseApplication.class, args);
+		SpringApplication.run(PurchaseApp.class, args);
 	}
 
 }
