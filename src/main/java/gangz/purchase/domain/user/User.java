@@ -1,21 +1,25 @@
 package gangz.purchase.domain.user;
 
-import framework.Id;
+import java.util.UUID;
 
-public class User  {
+public class User {
     private String name;
-    private Id id;
+    private UUID id;
+
+    public User() {
+        this.id = UUID.randomUUID();
+    }
 
     public User(String name) {
+        this();
         this.name = name;
-        this.id = Id.build();
     }
 
     public String getName() {
         return name;
     }
 
-    public Id getId() {
+    public UUID getId() {
         return this.id;
     }
 }

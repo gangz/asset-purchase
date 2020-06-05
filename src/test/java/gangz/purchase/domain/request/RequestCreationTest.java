@@ -1,10 +1,12 @@
 package gangz.purchase.domain.request;
 
-import framework.Id;
 import gangz.purchase.domain.user.User;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class RequestCreationTest {
     @Test
@@ -23,12 +25,10 @@ public class RequestCreationTest {
     }
 
     private PurchaseRequest createPurchaseRequest() {
-        Requestor requestor = new Requestor(new User("gangz"));
-        PurchaseRequest purchaseRequest = requestor.buildPurchaseRequest()
+        return PurchaseRequestBuilder.buildPurchaseRequest()
                 .build()
-                .addPurchaseItem(Id.build(),30)
-                ;
-        return purchaseRequest;
+                .committerId(new User().getId())
+                .addPurchaseItem(UUID.randomUUID(),30);
 
     }
 

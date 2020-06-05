@@ -1,13 +1,14 @@
 package gangz.purchase.domain.request;
 
-import gangz.purchase.domain.request.PurchaseRequest;
-import gangz.purchase.domain.request.Requestor;
-
 public class PurchaseRequestBuilder {
-    private final PurchaseRequest purchaseRequest  ;
+    private PurchaseRequest purchaseRequest  ;
 
-    public PurchaseRequestBuilder(Requestor requestor) {
-        this.purchaseRequest = new PurchaseRequest(requestor);
+    public PurchaseRequestBuilder(){
+        purchaseRequest = new PurchaseRequest();
+    }
+
+    public static PurchaseRequestBuilder buildPurchaseRequest() {
+        return new PurchaseRequestBuilder();
     }
 
     public PurchaseRequest build() {

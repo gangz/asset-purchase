@@ -1,28 +1,26 @@
 package gangz.purchase.domain.request;
 
 import framework.AbstractAggregateRoot;
-import framework.Id;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 public class PurchaseRequest extends AbstractAggregateRoot {
-    private final Id id;
-    private final Id committerId;
+    public UUID id;
+    private UUID committerId;
     private Long committedDate;
-    private long approveDate;
+    private Long approveDate;
     private PurchaseRequestStatus status;
     List<RequestItem> items = new ArrayList<>();
 
-    public PurchaseRequest(Requestor requestor) {
-        id = Id.build();
-        this.committerId = requestor.getId();
+    public PurchaseRequest(){
+        id = UUID.randomUUID();
         this.status = PurchaseRequestStatus.DRAFT;
         this.committedDate = System.currentTimeMillis();
     }
 
-    public PurchaseRequest addPurchaseItem(Id assetTypeId, int amount) {
+    public PurchaseRequest addPurchaseItem(UUID assetTypeId, int amount) {
         this.items.add(new RequestItem(assetTypeId, amount));
         return this;
     }
@@ -38,11 +36,16 @@ public class PurchaseRequest extends AbstractAggregateRoot {
     }
 
 
-    public Id committerId() {
+    public UUID committerId() {
         return this.committerId;
     }
 
     public Long committedDate() {
         return this.committedDate;
+    }
+
+    public PurchaseRequest committerId(UUID id) {
+        this.committerId = id;
+        return this;
     }
 }
