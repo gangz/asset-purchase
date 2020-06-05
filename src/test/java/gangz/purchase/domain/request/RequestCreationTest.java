@@ -1,9 +1,6 @@
-package gangz.purchase.application;
+package gangz.purchase.domain.request;
 
 import framework.Id;
-import gangz.purchase.domain.request.PurchaseRequest;
-import gangz.purchase.domain.request.PurchaseRequestStatus;
-import gangz.purchase.domain.request.Requestor;
 import gangz.purchase.domain.user.User;
 import org.junit.jupiter.api.Test;
 
@@ -14,6 +11,15 @@ public class RequestCreationTest {
     void test_should_create_purchase_request_successfully(){
         PurchaseRequest request = createPurchaseRequest();
         assertEquals(PurchaseRequestStatus.DRAFT, request.status());
+        assertNotNull(request.committerId());
+        assertNotNull(request.committedDate());
+    }
+
+    @Test
+    void test_should_produce_request_approved_event(){
+        PurchaseRequest request = createPurchaseRequest();
+        request.approve();
+        assertEquals(1,request.domainEvents().size());
     }
 
     private PurchaseRequest createPurchaseRequest() {
@@ -25,4 +31,5 @@ public class RequestCreationTest {
         return purchaseRequest;
 
     }
+
 }
