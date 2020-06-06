@@ -6,4 +6,6 @@ import lombok.Data;
 @Builder
 @Data
 public class PurchaseRequestDTO {
+	String submitterId;
+	
 }

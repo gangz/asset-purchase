@@ -13,8 +13,8 @@ public class RequestCreationTest {
     void test_should_create_purchase_request_successfully(){
         PurchaseRequest request = createPurchaseRequest();
         assertEquals(PurchaseRequestStatus.DRAFT, request.status());
-        assertNotNull(request.committerId());
-        assertNotNull(request.committedDate());
+        assertNotNull(request.getSubmitterId());
+        assertNotNull(request.getSubmittedDate());
     }
 
     @Test
@@ -27,7 +27,7 @@ public class RequestCreationTest {
     private PurchaseRequest createPurchaseRequest() {
         return PurchaseRequestBuilder.buildPurchaseRequest()
                 .build()
-                .committerId(new User().getId())
+                .submitterId(new User().getId())
                 .addPurchaseItem(UUID.randomUUID(),30);
 
     }
