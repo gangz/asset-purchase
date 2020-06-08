@@ -1,4 +1,4 @@
 package framework;
 
-public class DomainEvent {
+public interface DomainEvent extends ValueObject{
 }

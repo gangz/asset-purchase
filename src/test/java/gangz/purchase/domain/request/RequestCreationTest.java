@@ -1,6 +1,7 @@
 package gangz.purchase.domain.request;
 
 import gangz.purchase.domain.user.User;
+import gangz.purchase.domain.user.UserId;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;
@@ -13,8 +14,8 @@ public class RequestCreationTest {
     void test_should_create_purchase_request_successfully(){
         PurchaseRequest request = createPurchaseRequest();
         assertEquals(PurchaseRequestStatus.DRAFT, request.status());
-        assertNotNull(request.committerId());
-        assertNotNull(request.committedDate());
+        assertNotNull(request.getCommitterId());
+        assertNotNull(request.getCommittedDate());
     }
 
     @Test
@@ -25,9 +26,9 @@ public class RequestCreationTest {
     }
 
     private PurchaseRequest createPurchaseRequest() {
-        return PurchaseRequestBuilder.buildPurchaseRequest()
-                .build()
-                .committerId(new User().getId())
+        return PurchaseRequest.builder().committerId(
+                User.builder().id(UserId.of(UUID.randomUUID())).build().getId())
+                .build().init()
                 .addPurchaseItem(UUID.randomUUID(),30);
 
     }
