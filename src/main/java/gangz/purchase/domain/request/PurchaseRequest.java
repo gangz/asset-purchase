@@ -2,6 +2,7 @@ package gangz.purchase.domain.request;
 
 import framework.AbstractAggregateRoot;
 import framework.AggreateRoot;
+import gangz.purchase.api.dto.PurchaseRequestCreatedEvent;
 import gangz.purchase.domain.user.UserId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
