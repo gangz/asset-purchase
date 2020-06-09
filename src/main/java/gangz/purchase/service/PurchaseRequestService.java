@@ -13,4 +13,6 @@ public interface PurchaseRequestService {
     Optional<PurchaseRequest> getPurchaseRequest(PurchaseRequestId id);
 
     int countOfRequestCreatedBy(UserId userId);
+
+    void commit(PurchaseRequestId id);
 }

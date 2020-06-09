@@ -6,6 +6,7 @@ import gangz.purchase.domain.request.PurchaseRequestRepo;
 import gangz.purchase.domain.user.UserId;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -28,12 +29,23 @@ public class PurchaseRequestServiceImpl implements PurchaseRequestService {
 
     @Override
     public Optional<PurchaseRequest> getPurchaseRequest(PurchaseRequestId id) {
-        return repo.findById(id) ;
+        return repo.findById(id);
     }
 
     @Override
     public int countOfRequestCreatedBy(UserId userId) {
         return repo.findByCreatorId(userId).size();
+    }
+
+    @Override
+    @Transactional
+    public void commit(PurchaseRequestId id) {
+        Optional<PurchaseRequest> request = repo.findById(id);
+        request.ifPresent(v -> {
+                    v.commit();
+                    repo.save(v);
+                }
+        );
     }
 
 }
