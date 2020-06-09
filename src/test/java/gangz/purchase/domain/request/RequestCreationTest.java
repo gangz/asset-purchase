@@ -31,7 +31,7 @@ public class RequestCreationTest {
     void test_should_produce_request_committed_event(){
         PurchaseRequest request = createPurchaseRequest();
         request.commit();
-        assertEquals(1,request.domainEvents().size());
+        assertEquals(1,request.retrieveDomainEvents().size());
     }
 
     @DisplayName("采购请求被提交后，就不允许被增删")
@@ -49,7 +49,7 @@ public class RequestCreationTest {
     void test_should_produce_request_approved_event(){
         PurchaseRequest request = createPurchaseRequest();
         request.approve();
-        assertEquals(1,request.domainEvents().size());
+        assertEquals(1,request.retrieveDomainEvents().size());
     }
 
     @SneakyThrows

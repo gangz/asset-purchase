@@ -1,22 +1,16 @@
 package framework;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public abstract class AbstractAggregateRoot implements  AggreateRoot{
-    List<DomainEvent> events;
-    public AbstractAggregateRoot(){
-        events = new ArrayList<>();
-    }
-    public void registerEvent(DomainEvent event){
-        events.add(event);
-    }
-    public List<DomainEvent> domainEvents() {
-        return events;
+public abstract class AbstractAggregateRoot extends org.springframework.data.domain.AbstractAggregateRoot implements AggreateRoot {
+    public Collection<DomainEvent> retrieveDomainEvents() {
+        return this.domainEvents();
     }
 
     public void clearEvents() {
-        events.clear();
+        this.clearDomainEvents();
     }
 
 
