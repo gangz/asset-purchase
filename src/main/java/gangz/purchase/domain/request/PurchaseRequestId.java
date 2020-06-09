@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor(force = true)
 @Embeddable
 public class PurchaseRequestId implements Identifier {
-    private UUID id;
+    private UUID uid;
     public static PurchaseRequestId create() {
         return PurchaseRequestId.of(UUID.randomUUID());
     }

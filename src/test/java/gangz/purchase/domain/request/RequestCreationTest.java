@@ -9,6 +9,7 @@ import lombok.SneakyThrows;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.UUID;
 
@@ -56,8 +57,8 @@ public class RequestCreationTest {
         UserId userId = UserId.of(UUID.randomUUID());
         AssetTypeId assetTypeId = AssetTypeId.of(UUID.randomUUID());
         int amount = 30;
-
-        PurchaseRequestService service = new PurchaseRequestServiceImpl();
+        PurchaseRequestRepo repo = Mockito.mock(PurchaseRequestRepo.class);
+        PurchaseRequestService service = new PurchaseRequestServiceImpl(repo);
         PurchaseRequest request = service.createPurchaseRequest(userId);
         request.addPurchaseItem(assetTypeId,amount);
         return request;

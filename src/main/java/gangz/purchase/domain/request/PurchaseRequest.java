@@ -36,7 +36,7 @@ public class PurchaseRequest extends AbstractAggregateRoot {
     private Long committedDate;
     private PurchaseRequestStatus status;
     @OneToMany
-    @OrderBy("id asc") @Builder.Default
+    @OrderBy("itemId asc") @Builder.Default
     List<RequestItem> items = new ArrayList<>();
 
     /**
@@ -57,8 +57,10 @@ public class PurchaseRequest extends AbstractAggregateRoot {
      * @return
      */
     public PurchaseRequest addPurchaseItem(AssetTypeId assetTypeId, int amount) throws StatusNotAllowedException {
-        if (!this.status.equals(PurchaseRequestStatus.DRAFT)) throw new StatusNotAllowedException();
-        this.items.add(RequestItem.of(items.size(), assetTypeId, amount));
+        if (!this.status.equals(PurchaseRequestStatus.DRAFT))
+            throw new StatusNotAllowedException();
+
+        this.items.add(RequestItem.of(items.size(), assetTypeId, null,null,amount));
         return this;
     }
 
