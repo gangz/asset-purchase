@@ -1,7 +1,5 @@
-package gangz.purchase.api.dto;
+package gangz.purchase.api.data;
 
-import framework.DomainEvent;
-import framework.util.ObjectUtil;
 import gangz.purchase.domain.request.PurchaseRequest;
 import lombok.Getter;
 import lombok.Value;

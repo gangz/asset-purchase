@@ -16,7 +16,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User extends AbstractAggregateRoot implements AggreateRoot {
+public class User extends AbstractAggregateRoot  {
     @EmbeddedId
     private UserId id;
     private String name;

@@ -1,4 +1,4 @@
-package gangz.purchase.api.dto;
+package gangz.purchase.api.data;
 
 import lombok.Builder;
 import lombok.Data;

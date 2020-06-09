@@ -3,7 +3,7 @@ package framework;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractAggregateRoot {
+public abstract class AbstractAggregateRoot implements  AggreateRoot{
     List<DomainEvent> events;
     public AbstractAggregateRoot(){
         events = new ArrayList<>();
