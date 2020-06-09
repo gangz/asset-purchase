@@ -2,7 +2,9 @@ package gangz.purchase.domain.request;
 
 import framework.AbstractAggregateRoot;
 import framework.AggreateRoot;
-import gangz.purchase.api.dto.PurchaseRequestCreatedEvent;
+import framework.util.DateUtil;
+import gangz.purchase.api.dto.PurchaseRequestCommittedEvent;
+import gangz.purchase.domain.asset.AssetTypeId;
 import gangz.purchase.domain.user.UserId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,9 +27,10 @@ import java.util.UUID;
 public class PurchaseRequest extends AbstractAggregateRoot implements AggreateRoot {
     @EmbeddedId
     public PurchaseRequestId id;
-    private UserId committerId;
-    private Long committedDate;
+    private UserId creatorId;
+    private Long createdDate;
     private Long approvedDate;
+    private Long committedDate;
     private PurchaseRequestStatus status;
     @OneToMany
     @OrderBy("id asc") @Builder.Default
@@ -36,11 +39,13 @@ public class PurchaseRequest extends AbstractAggregateRoot implements AggreateRo
     public PurchaseRequest init() {
         id = PurchaseRequestId.of(UUID.randomUUID());
         this.status = PurchaseRequestStatus.DRAFT;
-        this.committedDate = System.currentTimeMillis();
+        this.createdDate = DateUtil.now();
         return this;
     }
 
-    public PurchaseRequest addPurchaseItem(UUID assetTypeId, int amount) {
+
+
+    public PurchaseRequest addPurchaseItem(AssetTypeId assetTypeId, int amount) {
         this.items.add(RequestItem.of(items.size(), assetTypeId, amount));
         return this;
     }
@@ -51,7 +56,13 @@ public class PurchaseRequest extends AbstractAggregateRoot implements AggreateRo
 
     public void approve() {
         this.status = PurchaseRequestStatus.APPROVED;
-        this.approvedDate = System.currentTimeMillis();
-        this.registerEvent(new PurchaseRequestCreatedEvent(this));
+        this.approvedDate = DateUtil.now();
+        this.registerEvent(new PurchaseRequestCommittedEvent(this));
+    }
+
+    public void commit() {
+        this.status = PurchaseRequestStatus.COMMITED;
+        this.committedDate = DateUtil.now();
+        this.registerEvent(new PurchaseRequestCommittedEvent(this));
     }
 }

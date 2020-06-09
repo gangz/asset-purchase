@@ -1,13 +1,13 @@
 package gangz.purchase.domain.request;
 
 import framework.ValueObject;
+import gangz.purchase.domain.asset.AssetTypeId;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.util.UUID;
 
 @Entity
 @Value
@@ -15,6 +15,6 @@ import java.util.UUID;
 @NoArgsConstructor(force = true)
 public class RequestItem implements ValueObject {
     @Id int id;
-    UUID deviceId;
+    AssetTypeId assetTypeId;
     int amount;
 }
