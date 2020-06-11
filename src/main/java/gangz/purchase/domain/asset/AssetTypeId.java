@@ -13,8 +13,5 @@ import java.util.UUID;
 @NoArgsConstructor(force = true)
 @Embeddable
 public class AssetTypeId implements Identifier {
-    private UUID id;
-    public static AssetTypeId create() {
-        return AssetTypeId.of(UUID.randomUUID());
-    }
+    private String id;
 }

@@ -13,8 +13,5 @@ import java.util.UUID;
 @NoArgsConstructor(force = true)
 @Embeddable
 public class UserId implements Identifier {
-    private UUID id;
-    public static UserId create() {
-        return UserId.of(UUID.randomUUID());
-    }
+    private String id;
 }

@@ -40,7 +40,7 @@ public class RequestCreationTest {
         PurchaseRequest request = createPurchaseRequest();
         request.commit();
         Assertions.assertThrows(StatusNotAllowedException.class,()->{
-            request.addPurchaseItem(AssetTypeId.of(UUID.randomUUID()),1);
+            request.addPurchaseItem(AssetTypeId.of(UUID.randomUUID().toString()),1);
         });
     }
 
@@ -54,8 +54,8 @@ public class RequestCreationTest {
 
     @SneakyThrows
     private PurchaseRequest createPurchaseRequest() {
-        UserId userId = UserId.of(UUID.randomUUID());
-        AssetTypeId assetTypeId = AssetTypeId.of(UUID.randomUUID());
+        UserId userId = UserId.of(UUID.randomUUID().toString());
+        AssetTypeId assetTypeId = AssetTypeId.of(UUID.randomUUID().toString());
         int amount = 30;
         PurchaseRequestRepo repo = Mockito.mock(PurchaseRequestRepo.class);
         PurchaseRequestService service = new PurchaseRequestServiceImpl(repo);

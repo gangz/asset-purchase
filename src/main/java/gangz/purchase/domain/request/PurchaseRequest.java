@@ -44,7 +44,7 @@ public class PurchaseRequest extends AbstractAggregateRoot {
      * @return
      */
     public PurchaseRequest init() {
-        id = PurchaseRequestId.of(UUID.randomUUID());
+        id = PurchaseRequestId.of(UUID.randomUUID().toString());
         this.status = PurchaseRequestStatus.DRAFT;
         this.createdDate = DateUtil.now();
         return this;

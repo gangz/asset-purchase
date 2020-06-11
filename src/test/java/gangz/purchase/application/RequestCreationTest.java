@@ -45,8 +45,8 @@ public class RequestCreationTest {
 
     @SneakyThrows
     private PurchaseRequest createPurchaseRequest() {
-        creatorId = UserId.of(UUID.randomUUID());
-        AssetTypeId assetTypeId = AssetTypeId.of(UUID.randomUUID());
+        creatorId = UserId.of(UUID.randomUUID().toString());
+        AssetTypeId assetTypeId = AssetTypeId.of(UUID.randomUUID().toString());
         int amount = 30;
         PurchaseRequest request = requestService.createPurchaseRequest(creatorId);
         request.addPurchaseItem(assetTypeId,amount);
